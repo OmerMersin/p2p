@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "p2p",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "p2p::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-p2p-Debug-0ddc6970fdcb3358c912.json",
+					"name" : "p2p",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "p2p_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-p2p_autogen-Debug-2f4b86721e2a8ce67fa6.json",
+					"name" : "p2p_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "p2p_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-p2p_autogen_timestamp_deps-Debug-2cb66f1d1704a503f562.json",
+					"name" : "p2p_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/omermersin/CLionProjects/p2p/cmake-build-debug",
+		"source" : "/Users/omermersin/CLionProjects/p2p"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

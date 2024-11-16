@@ -1,0 +1,6 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/omermersin/CLionProjects/p2p -B /Users/omermersin/CLionProjects/p2p/cmake-build-debug
+-- Found Boost: /opt/homebrew/lib/cmake/Boost-1.86.0/BoostConfig.cmake (found version "1.86.0") found components: system 
+-- Found Boost: /opt/homebrew/lib/cmake/Boost-1.86.0/BoostConfig.cmake (found version "1.86.0")  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/omermersin/CLionProjects/p2p/cmake-build-debug

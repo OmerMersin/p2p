@@ -1,0 +1,5 @@
+/Users/omermersin/CLionProjects/p2p/cmake-build-debug/CMakeFiles/p2p.dir
+/Users/omermersin/CLionProjects/p2p/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/omermersin/CLionProjects/p2p/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/omermersin/CLionProjects/p2p/cmake-build-debug/CMakeFiles/p2p_autogen_timestamp_deps.dir
+/Users/omermersin/CLionProjects/p2p/cmake-build-debug/CMakeFiles/p2p_autogen.dir

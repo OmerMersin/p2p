@@ -1,1 +1,2 @@
 Makefile linguist-generated
+cmake-build-debug/**/Makefile linguist-generated

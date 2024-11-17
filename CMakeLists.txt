@@ -9,7 +9,7 @@ set(CMAKE_AUTORCC ON) # For .qrc resource files
 set(CMAKE_AUTOUIC ON) # For .ui files
 
 # Locate Qt6 Widgets
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Network)
 
 # Locate Boost
 find_package(Boost REQUIRED COMPONENTS system)
@@ -50,7 +50,7 @@ set(SOURCES
 
 # UI files are automatically handled by AUTOUIC
 set(HEADERS
-        src/ui/mainwindow.h)
+        include/ui/mainwindow.h include/utils.h)
 
 # Add executable
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
@@ -62,6 +62,7 @@ target_link_libraries(${PROJECT_NAME}
         OpenSSL::Crypto
         SQLite::SQLite3
         Qt6::Widgets
+        Qt6::Network
         LibtorrentRasterbar::torrent-rasterbar
         )
 

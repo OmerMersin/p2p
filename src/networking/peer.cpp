@@ -19,9 +19,17 @@ Peer::~Peer() {
 }
 
 void Peer::bind(int localPort) {
-    socket.open(udp::v4());
-    socket.bind(udp::endpoint(udp::v4(), localPort));
-    std::cout << "Bound to local port: " << localPort << std::endl;
+    try {
+        // Ensure the socket is not already open
+        if (!socket.is_open()) {
+            socket.open(udp::v4());
+        }
+        socket.bind(udp::endpoint(udp::v4(), localPort));
+        std::cout << "Bound to local port: " << localPort << std::endl;
+    } catch (const boost::system::system_error &e) {
+        std::cerr << "[ERROR] Failed to bind socket: " << e.what() << std::endl;
+        throw;
+    }
 }
 
 void Peer::sendMessage(const std::string &message, const std::string &ip, int port) {
@@ -35,30 +43,40 @@ void Peer::sendMessage(const std::string &message, const std::string &ip, int po
 }
 
 void Peer::startListening() {
-    running = true;
-    std::cout << "[DEBUG] Starting to listen on: " << socket.local_endpoint().port() << std::endl;
-    listenerThread = std::thread([this]() {
-        try {
-            char buffer[1024];
-            udp::endpoint senderEndpoint;
-            while (running) {
-                size_t len = socket.receive_from(boost::asio::buffer(buffer), senderEndpoint);
-                std::string message(buffer, len);
+    try {
+        if (!socket.is_open()) {
+            throw std::runtime_error("Socket is not open. Cannot start listening.");
+        }
 
-                std::cout << "[DEBUG] Received from " << senderEndpoint.address().to_string()
-                          << ":" << senderEndpoint.port() << " - " << message << std::endl;
+        running = true;
+        std::cout << "[DEBUG] Starting to listen on: " << socket.local_endpoint().port() << std::endl;
 
-                // Notify via callback
-                if (messageCallback) {
-                    messageCallback(message, senderEndpoint.address().to_string(), senderEndpoint.port());
+        listenerThread = std::thread([this]() {
+            try {
+                char buffer[1024];
+                udp::endpoint senderEndpoint;
+                while (running) {
+                    size_t len = socket.receive_from(boost::asio::buffer(buffer), senderEndpoint);
+                    std::string message(buffer, len);
+
+                    std::cout << "[DEBUG] Received from " << senderEndpoint.address().to_string()
+                              << ":" << senderEndpoint.port() << " - " << message << std::endl;
+
+                    // Notify via callback
+                    if (messageCallback) {
+                        messageCallback(message, senderEndpoint.address().to_string(), senderEndpoint.port());
+                    }
+                }
+            } catch (const std::exception &e) {
+                if (running) {
+                    std::cerr << "[ERROR] Error receiving message: " << e.what() << std::endl;
                 }
             }
-        } catch (const std::exception &e) {
-            if (running) {
-                std::cerr << "[ERROR] Error receiving message: " << e.what() << std::endl;
-            }
-        }
-    });
+        });
+    } catch (const std::exception &e) {
+        std::cerr << "[ERROR] Failed to start listener: " << e.what() << std::endl;
+        throw;
+    }
 }
 
 void Peer::stopListening() {
@@ -66,7 +84,10 @@ void Peer::stopListening() {
     if (listenerThread.joinable()) {
         listenerThread.join();
     }
-    socket.close();
+    if (socket.is_open()) {
+        socket.close();
+    }
+    std::cout << "[DEBUG] Listener stopped and socket closed." << std::endl;
 }
 
 std::pair<std::string, int> Peer::getPublicAddress(const std::string &stunServer, int port) {

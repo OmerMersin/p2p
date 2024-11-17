@@ -28,6 +28,7 @@ public:
     QVBoxLayout *verticalLayout;
     QTextEdit *logTextBox;
     QHBoxLayout *horizontalLayout;
+    QLineEdit *peerIDInput;
     QLineEdit *peerIPInput;
     QLineEdit *peerPortInput;
     QHBoxLayout *horizontalLayout_2;
@@ -38,7 +39,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(400, 300);
+        MainWindow->resize(885, 638);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -50,6 +51,11 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
+        peerIDInput = new QLineEdit(centralwidget);
+        peerIDInput->setObjectName("peerIDInput");
+
+        horizontalLayout->addWidget(peerIDInput);
+
         peerIPInput = new QLineEdit(centralwidget);
         peerIPInput->setObjectName("peerIPInput");
 
@@ -88,6 +94,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "P2P Messaging", nullptr));
+        peerIDInput->setPlaceholderText(QCoreApplication::translate("MainWindow", "Peer ID", nullptr));
         peerIPInput->setPlaceholderText(QCoreApplication::translate("MainWindow", "Peer IP", nullptr));
         peerPortInput->setPlaceholderText(QCoreApplication::translate("MainWindow", "Peer Port", nullptr));
         messageInput->setPlaceholderText(QCoreApplication::translate("MainWindow", "Type your message here...", nullptr));

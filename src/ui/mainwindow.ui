@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>885</width>
+    <height>638</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,17 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QTextEdit" name="logTextBox" />
+     <widget class="QTextEdit" name="logTextBox"/>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLineEdit" name="peerIDInput">
+             <property name="placeholderText">
+              <string>Peer ID</string>
+             </property>
+            </widget>
+           </item>
       <item>
        <widget class="QLineEdit" name="peerIPInput">
         <property name="placeholderText">
@@ -57,4 +64,6 @@
    </layout>
   </widget>
  </widget>
+ <resources/>
+ <connections/>
 </ui>

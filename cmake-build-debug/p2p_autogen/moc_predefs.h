@@ -5,6 +5,7 @@
 #define OPENSSL_NO_SSL2 1
 #define QT_CORE_LIB 1
 #define QT_GUI_LIB 1
+#define QT_NETWORK_LIB 1
 #define QT_WIDGETS_LIB 1
 #define SIZEOF_DPTR (sizeof(void*))
 #define TORRENT_LINKING_SHARED 1
